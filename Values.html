@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    var button = document.querySelector('button');
+    Rx.Observable.fromEvent(button, 'click')
+    .throttleTime(1000)
+    .map(event => event.clientX)
+    .scan((count, clientX) => count + clientX, 0)
+    .subscribe(count => console.log(count));
+</body>
+</html>

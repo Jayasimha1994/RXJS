@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+</head>
+<body>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.5.7/dist/global/Rx.js"></script>
+</body>
+</html>
+<script>
+    var observable1 = Rx.Observable.interval();
+    var observable2 = Rx.Observable.interval();
+    var observable3 = Rx.Observable.interval();
+
+    var subscription = observable1.subscribe(x => console.log('first: ' + x));
+    var childSubscription = observable2.subscribe(x => console.log('second: ' + x));
+    var superChildSubscription = observable3.subscribe(x => console.log('second: ' + x));
+
+    subscription.add(childSubscription).add(superChildSubscription);
+    setTimeout(() => {
+        subscription.unsubscribe();
+    },100);
+</script>

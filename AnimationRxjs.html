@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <button id="b1">Click X</button>
+    <div id="div1" title="first" style="width:100px;height:100px;background:red;position:absolute;"><h3>I am Green</h3></div>
+    <div id="div2" title="first" style="width:100px;height:100px;background:red;position:absolute;margin:0 0 0 200px"><h3>I am yellow</h3></div>
+    <div id="div3" title="first" style="width:100px;height:100px;background:red;position:absolute;margin:0 0 0 400px"><h3>I am blue</h3></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.5.7/dist/global/Rx.js"></script>
+</body>
+</html>
+<script>
+    //var button = document.querySelector('button');
+    //Rx.Observable.fromEvent(button, 'click')
+    //.subscribe(
+    //(value) => {
+    //    document.getElementById('b1').style.background = 'green';
+    //    document.getElementById('b1').style.width = '100px';
+    //    document.getElementById('b1').style.height = '30px';
+    //});
+    var button = document.querySelector('#b1');
+    Rx.Observable.fromEvent(button, 'click')
+    .subscribe(
+    (value) => {
+        $('#div1').animate({ height: '400px', width: '400px' }).css('background-color', 'green').delay(300).slideToggle();
+        $('#div2').animate({ height: '400px', width: '400px' }).css('background-color', 'yellow').delay(300).slideToggle();
+        $('#div3').animate({ height: '400px', width: '400px' }).css('background-color', 'blue').delay(300).slideToggle();
+    });
+    //$(document).ready(function () {
+    //    $('#b1').click(function () {
+    //        $('#p1').animate({height: '400px', width: '400px' }).css('background-color', 'green').slideToggle();
+    //    });
+    //});
+</script>
